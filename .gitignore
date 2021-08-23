@@ -1,0 +1,9 @@
+main.py
+pyvenv.cfg
+/copy_venv
+/venv/Archive
+/venv/Include
+/venv/Lib
+/venv/Scripts
+/venv/text_files
+/venv/Расчет погрешностей
