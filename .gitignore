@@ -7,3 +7,5 @@ pyvenv.cfg
 /venv/Scripts
 /venv/text_files
 /venv/Расчет погрешностей
+/.idea
+venv/__pycache__/
