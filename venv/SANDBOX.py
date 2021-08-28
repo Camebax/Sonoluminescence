@@ -6,31 +6,37 @@ from mpl_toolkits.mplot3d import Axes3D
 from Functions import *
 
 n_wox = 51
-angles_cube = []
-dots_M_C = []
+angles_geometry = []
+angles_m_c = []
 x = []
 
 
-# Проносит источник по заданной траектории и выводит графики зависимости кол-ва излучения, прилетяющего в нужную область
-def move_source(lim=50, step=2):
+# Проносит источник по заданному направлению
+# и выводит графики зависимости кол-ва излучения, прилетающего в нужную область
+def move_source(lim=n_wox-1, step=2):
+    start_time = time.time()
     for _ in range(1, lim, step):
-        angles_cube.append(
-            cube_geometry(n=n_wox, x_source=_, y_source=round(n_wox / 2) - 1, z_source=round(n_wox / 2) - 1))
-        dots_M_C.append(
-            cube_monte_carlo(n=n_wox, x_source=_, y_source=round(n_wox / 2) - 1, z_source=round(n_wox / 2) - 1))
+        angles_geometry.append(
+            cube_geometry(n=n_wox, x_source=round(n_wox / 2) - 1, y_source=round(n_wox / 2) - 1, z_source=_))
+        angles_m_c.append(
+            cube_monte_carlo(n=n_wox, x_source=round(n_wox / 2) - 1, y_source=round(n_wox / 2) - 1, z_source=_))
         x.append(_)
 
-    plt.plot(x, angles_cube, 'r', linewidth=0.7)
-    plt.plot(x, dots_M_C, 'g', linewidth=0.7)
+    plt.plot(x, angles_geometry, 'r', linewidth=0.7)
+    plt.plot(x, angles_m_c, 'g', linewidth=0.7)
     plt.xlabel('Положение источника по оси X')
     plt.ylabel('Часть лучей, испускаемых источником,\n проходящая через препарат')
-    plt.xlim([0, 51])
-    plt.ylim([0, 0.2])
+    plt.xlim([0, lim])
+    plt.ylim([0, 6])
     plt.grid()
+    runtime = time.time() - start_time
+    print("--- %s seconds ---" % runtime, 'Кол-во рассчитанных точек:', lim / step)  # Вывод времени работы программы
     plt.show()
 
 
-cube_geometry()
-cube_monte_carlo()
+# print(cube_geometry(n = 201, x_source=100, y_source=100, z_source=10))
+# print(cube_monte_carlo(n = 201, n_iter=10000, x_source=100, y_source=100, z_source=10))
+
+move_source()
 
 # show_cube(cube)
