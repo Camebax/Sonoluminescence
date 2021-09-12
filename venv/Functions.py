@@ -5,6 +5,7 @@ import time
 import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits import mplot3d
+# ЭТАЛОННОЕ ЗНАЧЕНИЕ ДОЛИ СВЕТА, ПРИХОДЯЩИЙ НА КРУГ, ВПИСАННЫЙ В ГРАНЬ, ОТ Т.И. В ЦЕНТРЕ КУБА = 0.14644
 
 
 # Функция для цветного вывода всего кубика
